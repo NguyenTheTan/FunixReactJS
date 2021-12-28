@@ -9,8 +9,7 @@ class StaffList extends Component {
       selectedStaff: null
     }
   }
-
-
+  
   onStaffSelect(staff){
     this.setState({
       selectedStaff: staff
@@ -34,15 +33,12 @@ class StaffList extends Component {
           <Card onClick={ () => this.onStaffSelect(staff)}>
             <CardBody>
               <CardImg src={staff.image} alt={staff.name} />
-              <CardTitle> {staff.name} </CardTitle> 
-              
+              <CardTitle> {staff.name} </CardTitle>              
             </CardBody>
           </Card>
         </div>
-      )
-      
+      )      
     });
-
 
     return (
       <div className="container">
