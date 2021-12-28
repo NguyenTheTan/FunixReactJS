@@ -9,7 +9,7 @@ class StaffDetails extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    <Card className="col-12">
+                    <Card className="col-sm-6">
                         <CardImg src={staff.image} alt={staff.name} />
                         <CardBody>
                             <CardTitle> {staff.name} </CardTitle>

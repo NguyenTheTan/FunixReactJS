@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Card, CardBody, CardImg, CardTitle} from 'reactstrap'
 import StaffDetails from './StaffdetailComponent';
 
 class StaffList extends Component {
@@ -30,12 +29,12 @@ class StaffList extends Component {
     const staff1 = this.props.staff.map((staff) => {
       return (
         <div className="col-lg-4 col-md-6" key={staff.id}>
-          <Card onClick={ () => this.onStaffSelect(staff)}>
-            <CardBody>
-              <CardImg src={staff.image} alt={staff.name} />
-              <CardTitle> {staff.name} </CardTitle>              
-            </CardBody>
-          </Card>
+          <div onClick={ () => this.onStaffSelect(staff)}>
+            <div>
+              <img src={staff.image} alt={staff.name} className="cardImg"/>
+              <h4 className="name"> {staff.name} </h4>              
+            </div>
+          </div>
         </div>
       )      
     });

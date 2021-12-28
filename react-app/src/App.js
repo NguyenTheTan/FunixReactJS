@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import Class from './App.module.css';
 import StaffList from './components/StaffsListComponent';
 import { STAFFS } from './shared/stapffs';
-
+import './App.css'
 
 class App extends Component {
   constructor(props) {
@@ -13,10 +12,10 @@ class App extends Component {
   }
   render() {
     return (
-      <div className= {Class.App}>
+      <div className="App">
         <div>
-          <div>
-            <h3>Ứng dụng quản lý nhân sự v1.0</h3>
+          <div className= "Header">
+            <h3 className= "heading" >Ứng dụng quản lý nhân sự v1.0</h3>
           </div>
         </div>
         <StaffList staff={this.state.staffs} />
