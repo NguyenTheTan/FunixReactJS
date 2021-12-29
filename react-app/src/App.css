@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: cornflowerblue;
 }
 
 .Header {
@@ -13,8 +14,21 @@
   line-height: 100px;
   text-transform: uppercase;
 }
-img {
+
+.img-tag {
+  border: 1px solid #333;
+  border-radius: 5px;
+  margin-bottom: 16px;
+}
+.cardImg {
   width: 100%;
+}
+.name {
+  font-size: 2rem;
+  padding: 1rem;
+  color: blue;
+  background-color: #ccc;
+  margin: 0;
 }
 .card-body {
   margin-bottom: 18px;

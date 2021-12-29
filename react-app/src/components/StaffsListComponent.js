@@ -30,7 +30,7 @@ class StaffList extends Component {
       return (
         <div className="col-lg-4 col-md-6" key={staff.id}>
           <div onClick={ () => this.onStaffSelect(staff)}>
-            <div>
+            <div className="img-tag">
               <img src={staff.image} alt={staff.name} className="cardImg"/>
               <h4 className="name"> {staff.name} </h4>              
             </div>
