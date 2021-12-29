@@ -26,8 +26,10 @@ class StaffList extends Component {
   }
 
   render() {
+    
     const staff1 = this.props.staff.map((staff) => {
       return (
+        
         <div className="col-lg-4 col-md-6" key={staff.id}>
           <div onClick={ () => this.onStaffSelect(staff)}>
             <div className="img-tag">
