@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardText, CardTitle, CardImg, CardBody } from 'reactstrap';
+import  dateFormat  from "dateformat";
 
 class DishDetail extends Component {
 
@@ -28,7 +29,7 @@ class DishDetail extends Component {
                             <li key={comment.id}>
                                 <p>{comment.comment}</p>
                                 <p>-- {comment.author} </p>
-                                <p>{comment.date}</p>
+                                <p>{dateFormat(comment.date , 'dd/mm/yyyy')}</p>
                             </li>
                         )
                     })}
