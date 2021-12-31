@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/NguyenTheTan/FunixReactJS/issues"
   },
-  "homepage": "https://github.com/NguyenTheTan/FunixReactJS#readme"
+  "homepage": "https://github.com/NguyenTheTan/FunixReactJS#readme",
+  "dependencies": {
+    "bootstrap-social": "5.1.1",
+    "font-awesome": "^4.7.0"
+  }
 }
