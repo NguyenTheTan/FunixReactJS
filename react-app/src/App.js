@@ -1,26 +1,17 @@
 import React, { Component } from 'react';
-import StaffList from './components/StaffsListComponent';
-import { STAFFS } from './shared/stapffs';
+import { BrowserRouter } from 'react-router-dom';
+import Main from './components/MainComponent';
 import './App.css'
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      staffs: STAFFS,
-    };
-  }
 
   render() {
     return (
-      <div className="App">
-        <div>
-          <div className= "Header">
-            <h3 className= "heading" >Ứng dụng quản lý nhân sự v1.0</h3>
-          </div>         
+      <BrowserRouter>
+        <div className="App">
+          <Main />
         </div>
-        <StaffList staff={this.state.staffs} />
-      </div>
+      </BrowserRouter>
     );
   }
 }

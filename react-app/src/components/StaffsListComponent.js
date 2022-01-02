@@ -1,59 +1,39 @@
-import React, { Component } from 'react';
-import StaffDetails from './StaffdetailComponent';
+import React from 'react';
+import { Card, CardImg, CardTitle} from 'reactstrap';
+import { Link } from 'react-router-dom';
 
-class StaffList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedStaff: null
-    }
-  }
-  
-  onStaffSelect(staff){
-    this.setState({
-      selectedStaff: staff
-    })
-  }
-
-  renderStaff(staff){
-    if (staff != null)
-      return (
-        <StaffDetails staff={staff} />
-      )
-    else {
-      <div></div>
-    }
-  }
-
-  render() {
-    
-    const staff1 = this.props.staff.map((staff) => {
-      return (
-        
-        <div className="col-lg-4 col-md-6" key={staff.id}>
-          <div onClick={ () => this.onStaffSelect(staff)}>
-            <div className="img-tag">
-              <img src={staff.image} alt={staff.name} className="cardImg"/>
-              <h4 className="name"> {staff.name} </h4>              
-            </div>
+function RenderStaffList ({staff, onClick}) {
+  return (
+    <Card>
+      <Link to={`/staff/${staff.id}`} >
+          <CardImg width="100%" src={staff.image} alt={staff.name} />
+          <div>
+              <CardTitle>{staff.name}</CardTitle>
           </div>
-        </div>
-      )      
-    });
-
+      </Link>
+    </Card>
+  );
+}
+const StaffList = (props) => {
+  const staff1 = props.staff.map((staff) => {
     return (
-      <div className="container">
-        <div className="row">
-          {staff1}
-        </div>
-        <div>
-          {this.renderStaff(this.state.selectedStaff)}
-        </div>
+      <div className="col-lg-2 col-md-4 col-6" key={staff.id}>
+        <RenderStaffList staff={staff} onClick={props.onClick} />
       </div>
     )
-    
-  }
-
-}
-
+  });
+  return (
+    <div className='container'>
+      <div className='row'>
+        <div className='col-12'>
+          <h3 active>Nhân Viên</h3>
+          <br />
+        </div>                          
+      </div>
+      <div className='row'>
+        {staff1} 
+      </div>
+    </div>      
+  )      
+}     
 export default StaffList;
