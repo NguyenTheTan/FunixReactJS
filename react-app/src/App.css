@@ -19,7 +19,7 @@
 }
 
 .footer {
-  background-color: #d1c4e9;
+  background-color: #04c8ee;
   margin: 0px auto;
   padding: 20px 0px 20px 0px;
 }
@@ -28,14 +28,9 @@
   margin: 0px auto;
 }
 
-address {
-  font-size: 80%;
-  margin: 0px;
-  color: #0f0f0f;
-}
 .container {
   margin-left: 0 !important;
 }
-.content {
-  display: -webkit-inline-box;
+button.btn.btn-secondary {
+  margin-left: 12px;
 }

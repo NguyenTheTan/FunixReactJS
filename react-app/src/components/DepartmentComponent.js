@@ -1,28 +1,30 @@
 import React from "react";
-
-function RenderDepartment({ department }) {
+import { Card } from "reactstrap";
+// Presentational Component
+const RenderDepartment = ({ department }) => {
   return (
-    <div className="container">
-      <div className="row">
-        <div key={department.id}>
-          <h4>{department.name}</h4>
-          <p>Số lượng nhân viên: {department.numberOfStaff}</p>
-        </div>
-      </div>
-    </div>
+    <Card>
+      <h4>{department.name}</h4>
+      <p>Số lượng nhân viên: {department.numberOfStaff}</p>
+    </Card>
   );
-}
+};
 
+// Container Component
 function Department(props) {
   const department = props.department.map((department) => {
     return (
-      <div className="col-lg-4 col-md-6 col-12">
+      <div className="col-lg-4 col-md-6 col-12" key={department.id}>
         <RenderDepartment department={department} />
       </div>
     );
   });
 
-  return <div className="row">{department}</div>;
+  return (
+    <div className="container">
+      <div className="row">{department}</div>
+    </div>
+  );
 }
 
 export default Department;

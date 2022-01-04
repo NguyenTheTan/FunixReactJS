@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import StaffDetail from "../components/StaffdetailComponent";
-import { STAFFS } from "../shared/staffs";
-import { DEPARTMENTS } from "../shared/staffs";
+import { STAFFS, DEPARTMENTS } from "../shared/staffs";
 import Header from "../components/HeaderComponent";
 import Footer from "../components/FooterComponent";
 import StaffList from "../components/StaffsListComponent";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Department from "./DepartmentComponent";
+import SalaryTable from "./SalaryTableComponent";
 
 class Main extends Component {
   constructor(props) {
@@ -48,7 +48,10 @@ class Main extends Component {
             path="/department"
             component={() => <Department department={this.state.department} />}
           />
-          <Redirect to="/staff" />
+          <Route
+            path="/salary"
+            component={() => <SalaryTable staffList={this.state.staffs} />}
+          />
         </Switch>
         <Footer />
       </div>
