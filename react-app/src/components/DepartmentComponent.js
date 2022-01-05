@@ -3,8 +3,8 @@ import { Card } from "reactstrap";
 // Presentational Component
 const RenderDepartment = ({ department }) => {
   return (
-    <Card>
-      <h4>{department.name}</h4>
+    <Card className="p-3">
+      <h4 className="py-3">{department.name}</h4>
       <p>Số lượng nhân viên: {department.numberOfStaff}</p>
     </Card>
   );

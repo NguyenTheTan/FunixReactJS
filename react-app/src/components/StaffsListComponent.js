@@ -26,7 +26,7 @@ const StaffList = (props) => {
     <div className="container">
       <div className="row">
         <div className="col-12">
-          <h3>Nhân Viên</h3>
+          <h3 className="staff">Nhân Viên</h3>
           <br />
         </div>
       </div>

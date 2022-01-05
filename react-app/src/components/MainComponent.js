@@ -34,6 +34,11 @@ class Main extends Component {
         <Switch>
           <Route
             exact
+            path="/"
+            component={() => <StaffList staff={this.state.staffs} />}
+          />
+          <Route
+            exact
             path="/staff"
             component={() => <StaffList staff={this.state.staffs} />}
           />

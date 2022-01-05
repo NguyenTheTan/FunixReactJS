@@ -8,7 +8,12 @@ function RenderStaff({ staff }) {
     return (
       <div className=" row">
         <div className="col-lg-3 col-md-4 col-12">
-          <img src={staff.image} style={{ width: "100%" }} alt={staff.name} />
+          <img
+            className="img"
+            src={staff.image}
+            style={{ width: "100%" }}
+            alt={staff.name}
+          />
         </div>
         <div key={staff.id} className="col-lg-9 col-md-8 col-12">
           <h3> {staff.name} </h3>
