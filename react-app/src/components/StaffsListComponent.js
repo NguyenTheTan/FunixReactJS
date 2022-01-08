@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, CardImg, CardTitle } from "reactstrap";
 import { Link } from "react-router-dom";
 import AddStaff from "./AddStaffComponent";
@@ -16,9 +16,10 @@ function RenderStaffList({ staff, onClick }) {
   );
 }
 const StaffList = (props) => {
-  const [staff, setStaff] = useState(props.staff);
-
-  const staff1 = staff.map((staff) => {
+  const onAddStaff = (staff) => {
+    props.onAddStaff(staff);
+  };
+  const staff1 = props.staff.map((staff) => {
     return (
       <div className="col-lg-2 col-md-4 col-6" key={staff.id}>
         <RenderStaffList staff={staff} onClick={props.onClick} />
@@ -31,9 +32,9 @@ const StaffList = (props) => {
         <div>
           <h3 className="staff">Nhân Viên</h3>
         </div>
-        <input type="text" />
-        <button className="btn">Tìm</button>
-        <AddStaff staffList={props.staff} />
+        {/* <input type="text" />
+        <button className="btn">Tìm</button> */}
+        <AddStaff staffList={props.staff} onStaff={onAddStaff} />
       </div>
       <div className="row" key={props.id}>
         {staff1}

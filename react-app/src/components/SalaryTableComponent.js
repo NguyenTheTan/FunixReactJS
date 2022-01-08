@@ -89,11 +89,11 @@ function SalaryTable(props) {
         </div>
         <div className="col-12">
           <Button onClick={() => sortSalary("increase")}>
-            <span class="fa fa-sort-amount-asc"></span> Lương Thấp
+            <span className="fa fa-sort-amount-asc"></span> Lương Thấp
           </Button>
 
           <Button onClick={() => sortSalary("decrease")}>
-            <span class="fa fa-sort-amount-desc"></span> Lương Cao
+            <span className="fa fa-sort-amount-desc"></span> Lương Cao
           </Button>
         </div>
       </div>

@@ -17,13 +17,19 @@ class Main extends Component {
     };
   }
 
+  onAddStaff = (newStaff) => {
+    this.setState({ staffs: [...this.state.staffs, newStaff] });
+  };
+
   render() {
     const StaffId = ({ match }) => {
       return (
         <StaffDetail
-          staff={this.state.staffs.find(
-            (staff) => staff.id === +match.params.id
-          )}
+          staff={
+            this.state.staffs.filter(
+              (staff) => staff.id === parseInt(match.params.id, 10)
+            )[0]
+          }
         />
       );
     };
@@ -35,7 +41,12 @@ class Main extends Component {
           <Route
             exact
             path="/staff"
-            component={() => <StaffList staff={this.state.staffs} />}
+            component={() => (
+              <StaffList
+                staff={this.state.staffs}
+                onAddStaff={this.onAddStaff}
+              />
+            )}
           />
 
           <Route exact path="/staff/:id" component={StaffId} />

@@ -4,7 +4,7 @@ import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Link } from "react-router-dom";
 
 function RenderStaff({ staff }) {
-  if (staff !== null)
+  if (staff != null)
     return (
       <div className=" row">
         <div className="col-lg-3 col-md-4 col-12">
@@ -28,7 +28,7 @@ function RenderStaff({ staff }) {
   else return <div></div>;
 }
 const StaffDetail = (props) => {
-  if (props.staff !== null)
+  if (props.staff != null)
     return (
       <div>
         <div className="row">
