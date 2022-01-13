@@ -2,9 +2,8 @@
   background-color: #0d6efd;
 }
 .staff {
-  margin-top: 14px;
+  margin: 14px 0 0 12px;
   color: red;
-  border-bottom: 1px solid #333;
 }
 .collapse.navbar-collapse {
   margin-left: 14px;
@@ -37,6 +36,20 @@ h5.card-title {
   border-bottom: 1px ridge;
   min-height: 400px;
 }
+.form {
+  display: flex;
+  margin-top: 14px;
+  width: 105%;
+}
+.add.form-group {
+  margin: 0.9rem 0 0 5.5rem;
+}
+button.search.btn.btn-primary {
+  margin-left: 12px;
+}
+button.btn.btn-danger {
+  width: 52px;
+}
 
 .footer {
   background-color: #04c8ee;
@@ -53,4 +66,22 @@ h5.card-title {
 }
 button.btn.btn-secondary {
   margin-left: 12px;
+}
+
+@media screen and (max-width: 991px) {
+  .form {
+    width: 108%;
+  }
+  .add.form-group {
+    margin: 0.9rem 0 0 8rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .add.form-group {
+    margin: 0.9rem 0 0 9.1rem;
+  }
+  .form {
+    width: 95%;
+  }
 }
