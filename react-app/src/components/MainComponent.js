@@ -1,12 +1,21 @@
 import React, { Component } from "react";
 import StaffDetail from "../components/StaffdetailComponent";
-import { STAFFS, DEPARTMENTS } from "../shared/staffs";
+import { connect } from "react-redux";
 import Header from "../components/HeaderComponent";
 import Footer from "../components/FooterComponent";
 import StaffList from "../components/StaffsListComponent";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import Department from "./DepartmentComponent";
 import SalaryTable from "./SalaryTableComponent";
+import { STAFFS, DEPARTMENTS } from "../shared/staffs";
+
+// Khai báo state reducer
+const mapStateToProps = (state) => {
+  return {
+    staffs: state.staffs,
+    department: state.department,
+  };
+};
 
 class Main extends Component {
   constructor(props) {
@@ -16,7 +25,6 @@ class Main extends Component {
       department: DEPARTMENTS,
     };
   }
-
   onAddStaff = (newStaff) => {
     this.setState({ staffs: [...this.state.staffs, newStaff] });
   };
@@ -66,4 +74,4 @@ class Main extends Component {
     );
   }
 }
-export default Main;
+export default withRouter(connect(mapStateToProps)(Main));
