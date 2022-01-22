@@ -10,7 +10,7 @@ import {
   Row,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import { Form, Control, Errors, actions } from "react-redux-form";
+import { Form, Control, Errors } from "react-redux-form";
 
 class Contact extends Component {
   constructor(props) {
