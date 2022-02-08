@@ -1,6 +1,9 @@
 import * as ActionTypes from './ActionTypes';
 
-export const addStaff = (id, image, name, doB, salaryScale, startDate, department, annualLeave, overTime) => ({
+export const addStaff = (id, image, name, doB, salaryScale, startDate, department, annualLeave, overTime) => {
+    console.log(id,name)
+    return{
+        
     type: ActionTypes.ADD_STAFF,
     payload: {
         id: id,
@@ -14,4 +17,4 @@ export const addStaff = (id, image, name, doB, salaryScale, startDate, departmen
         overTime: overTime
     }
            
-})
+}}

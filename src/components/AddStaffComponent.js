@@ -1,5 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import {withRouter } from 'react-router-dom'
 import {
   Button,
   Modal,
@@ -10,6 +12,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import { addStaff } from "../redux/ActionCreactors";
 import { DEPARTMENTS } from "../shared/staffs";
 import { LocalForm, Control, Errors } from "react-redux-form";
 
@@ -18,6 +21,11 @@ const maxLength = (len) => (val) => !val || val.length <= len;
 const minLength = (len) => (val) => val && val.length >= len;
 const isNumber = (val) => !Number.isNaN(Number(val));
 const numRange = (val) => val > 0 && val < 4;
+
+const mapDispatchToProps = dispatch => ({
+  addStaff: (id, image, name, doB, salaryScale, startDate, annualLeave, department, overTime ) => 
+  dispatch(addStaff(id, image,name, doB, salaryScale, startDate, annualLeave,department, overTime))
+})
 
 class AddStaff extends Component {
   constructor(props) {
@@ -39,6 +47,7 @@ class AddStaff extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
   }
+  
 
   // Hàm tạo đóng mở form thêm nhân viên
   toggleModal() {
@@ -46,6 +55,7 @@ class AddStaff extends Component {
       isModalOpen: !this.state.isModalOpen,
     });
   }
+
 
   // sự kiện handleSubmit khi người dùng thêm nhân viên
   handleSubmit(value) {
@@ -63,6 +73,9 @@ class AddStaff extends Component {
       overTime: value.overTime,
       image: "/assets/images/alberto.png",
     };
+    this.props.addStaff(
+      this.state.id,this.state.image,this.state.name,this.state.doB,this.state.salaryScale,this.state.startDate,this.state.annualLeave,this.state.department,this.state.overTime)
+     
 
     // Đièu kiện người dùng nhập đầy đủ các trường
     if (newStaff.name === "") {
@@ -70,7 +83,6 @@ class AddStaff extends Component {
     } else {
       this.props.onStaff(newStaff);
     }
-    console.log(newStaff)
   }
 
   render() {
@@ -293,4 +305,4 @@ class AddStaff extends Component {
   }
 }
 
-export default AddStaff;
+export default withRouter(connect(null,mapDispatchToProps)(AddStaff));

@@ -9,7 +9,7 @@ import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import Department from "./DepartmentComponent";
 import SalaryTable from "./SalaryTableComponent";
 // import { STAFFS, DEPARTMENTS } from "../shared/staffs";
-import { addStaff } from "../redux/ActionCreactors";
+
 
 // Khai báo state reducer
 const mapStateToProps = (state) => {
@@ -19,9 +19,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  addStaff: (id, image, name, doB, salaryScale, startDate, annualLeave, department, overTime ) => dispatch(addStaff(id, image,name, doB, salaryScale, startDate, annualLeave,department, overTime))
-})
+
 
 class Main extends Component {
   constructor(props) {
@@ -36,6 +34,7 @@ class Main extends Component {
   };
 
   render() {
+    console.log(this.props.staffs)
     const StaffId = ({ match }) => {
       return (
         <StaffDetail
@@ -44,7 +43,7 @@ class Main extends Component {
               (staff) => staff.id === parseInt(match.params.id, 10)
             )[0]
           }
-          addStaff={this.props.addStaff}
+          
         />
       );
     };
@@ -60,6 +59,7 @@ class Main extends Component {
               <StaffList
                 staff={this.props.staffs}
                 onAddStaff={this.onAddStaff}
+                addStaff={this.props.addStaff}
               />
             )}
           />
@@ -81,4 +81,4 @@ class Main extends Component {
     );
   }
 }
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
+export default withRouter(connect(mapStateToProps, null)(Main));
