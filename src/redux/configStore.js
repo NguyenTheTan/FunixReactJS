@@ -9,6 +9,5 @@ export const ConfigureStore = () => {
       department: Department
     })
     );
-    console.log('asdasdasdasdsad: ', store)
   return store;
 };
