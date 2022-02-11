@@ -1,7 +1,20 @@
 import React from "react";
 import { Card } from "reactstrap";
+import { Loading } from './LoadingComponent';
+
 // Presentational Component
-const RenderDepartment = ({ department }) => {
+const RenderDepartment = ({ department, isLoading, errMess }) => {
+  if (isLoading) {
+    return(
+      <Loading />
+    );
+  }
+  else if (errMess) {
+      return(
+        <h4>{errMess}</h4>
+      );
+  }
+  else 
   return (
     <Card className="p-3">
       <h4 className="py-3">{department.name}</h4>
@@ -12,13 +25,36 @@ const RenderDepartment = ({ department }) => {
 
 // Container Component
 function Department(props) {
-  const department = props.department.map((department) => {
+
+  const department = props.department.department.map((department) => {
     return (
       <div className="col-lg-4 col-md-6 col-12" key={department.id}>
-        <RenderDepartment department={department} />
+        <RenderDepartment department={department} isLoading={props.departmentLoading} errMess={props.departmentErrMess}/>
       </div>
     );
   });
+
+  if (props.department.isLoading) {
+    return(
+        <div className="container">
+            <div className="row">            
+                <Loading />
+            </div>
+        </div>
+    );
+  }
+  else if (props.department.errMess) {
+      return(
+          <div className="container">
+              <div className="row"> 
+                  <div className="col-12">
+                      <h4>{props.department.errMess}</h4>
+                  </div>
+              </div>
+          </div>
+      );
+  }
+  else
 
   return (
     <div className="container">

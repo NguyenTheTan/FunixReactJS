@@ -6,9 +6,11 @@ import Header from "../components/HeaderComponent";
 import Footer from "../components/FooterComponent";
 import StaffList from "../components/StaffsListComponent";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Department from "./DepartmentComponent";
 import SalaryTable from "./SalaryTableComponent";
 // import { STAFFS, DEPARTMENTS } from "../shared/staffs";
+import {postStaff, fetchStaff, fetchDepartment, addDepartment, fetchStaffSalary, addSalary} from '../redux/ActionCreactors'
 
 
 // Khai báo state reducer
@@ -16,10 +18,19 @@ const mapStateToProps = (state) => {
   return {
     staffs: state.staffs,
     department: state.department,
+    salary: state.salary
   };
 };
 
-
+const mapDispatchToProps = dispatch => ({
+    postStaff: (staff) => {dispatch(postStaff(staff))},
+    fetchStaff: () => {dispatch(fetchStaff())},
+    addDepartment: (department) => {dispatch(addDepartment(department))},
+    fetchDepartment: () => {dispatch(fetchDepartment())},
+    addSalary: (salary) => {dispatch(addSalary(salary))},
+    fetchStaffSalary: () => {dispatch(fetchStaffSalary())}
+  
+})
 
 class Main extends Component {
   constructor(props) {
@@ -29,21 +40,31 @@ class Main extends Component {
     //   department: DEPARTMENTS,
     // };
   }
-  onAddStaff = (newStaff) => {
-    this.setState({ staffs: [...this.props.staffs, newStaff] });
-  };
 
+  componentDidMount() {
+    this.props.fetchStaff()
+    this.props.fetchDepartment()
+    this.props.fetchStaffSalary()
+  }
+
+  onAddStaff = (newStaff) => {
+    console.log(newStaff)
+    this.setState({ staffs: [...this.props.staffs.staff, newStaff] });
+  };
+  
   render() {
-    console.log(this.props.staffs)
+    // console.log('staff: ', this.props.staffs)
+
     const StaffId = ({ match }) => {
+      console.log('staff: ', this.props.staff)
       return (
         <StaffDetail
           staff={
-            this.props.staffs.filter(
+            this.props.staffs.staff.filter(
               (staff) => staff.id === parseInt(match.params.id, 10)
-            )[0]
-          }
-          
+            )[0]}      
+            isLoading={this.props.staffs.isLoading}
+            errMess={this.props.staffs.errMess}   
         />
       );
     };
@@ -51,7 +72,9 @@ class Main extends Component {
     return (
       <div>
         <Header />
-        <Switch>
+        <TransitionGroup>
+          <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
+        <Switch location={this.props.location} >
           <Route
             exact
             path="/staff"
@@ -59,7 +82,7 @@ class Main extends Component {
               <StaffList
                 staff={this.props.staffs}
                 onAddStaff={this.onAddStaff}
-                addStaff={this.props.addStaff}
+                postStaff={this.props.postStaff}
               />
             )}
           />
@@ -76,9 +99,11 @@ class Main extends Component {
           />
           <Redirect to="/staff" />
         </Switch>
+              </CSSTransition>
+        </TransitionGroup>
         <Footer />
       </div>
     );
   }
 }
-export default withRouter(connect(mapStateToProps, null)(Main));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));

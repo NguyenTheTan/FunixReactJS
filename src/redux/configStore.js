@@ -1,13 +1,20 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers,applyMiddleware } from "redux";
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 import { Staffs } from "./staffs";
 import { Department } from "./department";
+import { Salary } from "./staffSalary";
 
+//tạo store lưu trữ với reducer ban đầu
 export const ConfigureStore = () => {
+
   const store = createStore(
     combineReducers({
       staffs: Staffs,
-      department: Department
-    })
+      department: Department,
+      salary: Salary
+    }),
+    applyMiddleware(thunk, logger)
     );
   return store;
 };

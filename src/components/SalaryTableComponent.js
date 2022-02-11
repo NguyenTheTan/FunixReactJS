@@ -8,9 +8,21 @@ import {
   Breadcrumb,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { Loading } from "./LoadingComponent";
 
-const RenderSalary = ({ staff, salary }) => {
+const RenderSalary = ({ staff, salary, isLoading, errMess }) => {
   const formatDecimal = require("format-decimal");
+  if (isLoading) {
+    return(
+      <Loading />
+    );
+  }
+  else if (errMess) {
+      return(
+        <h4>{errMess}</h4>
+      );
+  }
+  else 
   return (
     <Jumbotron>
       <h2 className="py-3">{staff.name}</h2>
@@ -64,7 +76,7 @@ function SalaryTable(props) {
     setStaffList(sortedStaffList);
   }
 
-  const staff = staffList.map((staff) => {
+  const staff = staffList.staff.map((staff) => {
     return (
       <div className="col-12 col-md-6 col-lg-4" key={staff.id}>
         <RenderSalary

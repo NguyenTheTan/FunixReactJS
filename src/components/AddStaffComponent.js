@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import {withRouter } from 'react-router-dom'
+// import { connect } from "react-redux";
+// import {withRouter } from 'react-router-dom'
 import {
   Button,
   Modal,
@@ -12,7 +12,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import { addStaff } from "../redux/ActionCreactors";
+// import { addStaff, fetchStaff } from "../redux/ActionCreactors";
 import { DEPARTMENTS } from "../shared/staffs";
 import { LocalForm, Control, Errors } from "react-redux-form";
 
@@ -22,10 +22,13 @@ const minLength = (len) => (val) => val && val.length >= len;
 const isNumber = (val) => !Number.isNaN(Number(val));
 const numRange = (val) => val > 0 && val < 4;
 
-const mapDispatchToProps = dispatch => ({
-  addStaff: (id, image, name, doB, salaryScale, startDate, annualLeave, department, overTime ) => 
-  dispatch(addStaff(id, image,name, doB, salaryScale, startDate, annualLeave,department, overTime))
-})
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     addStaff: (staff) => dispatch(addStaff(staff)),
+//     fetchStaff: () => {dispatch(fetchStaff())}
+//   }
+  
+// }
 
 class AddStaff extends Component {
   constructor(props) {
@@ -43,25 +46,29 @@ class AddStaff extends Component {
       salary: "",
       image: "/assets/images/alberto.png",
     };
-
+    
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
   }
   
-
+  // componentDidMount() {
+  //   this.props.fetchStaff()
+  // }
+  
+  
   // Hàm tạo đóng mở form thêm nhân viên
   toggleModal() {
     this.setState({
       isModalOpen: !this.state.isModalOpen,
     });
   }
-
-
+  
+  
   // sự kiện handleSubmit khi người dùng thêm nhân viên
   handleSubmit(value) {
     const department = DEPARTMENTS.find(
       (department) => department.id === value.department
-    );
+      );
     const newStaff = {
       id: this.props.staffList.length,
       name: value.name,
@@ -73,18 +80,17 @@ class AddStaff extends Component {
       overTime: value.overTime,
       image: "/assets/images/alberto.png",
     };
-    this.props.addStaff(
-      this.state.id,this.state.image,this.state.name,this.state.doB,this.state.salaryScale,this.state.startDate,this.state.annualLeave,this.state.department,this.state.overTime)
-     
-
+    
+    // this.props.postStaff(newStaff);
+    
     // Đièu kiện người dùng nhập đầy đủ các trường
     if (newStaff.name === "") {
       alert("Vui lòng nhập các trường");
     } else {
-      this.props.onStaff(newStaff);
+      this.props.postStaff(newStaff);
     }
   }
-
+  
   render() {
     return (
       <>
@@ -191,7 +197,7 @@ class AddStaff extends Component {
                     name="department"
                     defaultValue="Dept00"
                   >
-                    <option value="Dept00">---Moi Ban Chon---</option>
+                    <option value="Dept00">Chọn Phòng Ban</option>
                     <option value="Dept01">Sale</option>
                     <option value="Dept02">HR</option>
                     <option value="Dept03">Marketing</option>
@@ -305,4 +311,4 @@ class AddStaff extends Component {
   }
 }
 
-export default withRouter(connect(null,mapDispatchToProps)(AddStaff));
+export default AddStaff;
