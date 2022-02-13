@@ -13,35 +13,29 @@ import { Loading } from "./LoadingComponent";
 const RenderSalary = ({ staff, salary, isLoading, errMess }) => {
   const formatDecimal = require("format-decimal");
   if (isLoading) {
-    return(
-      <Loading />
+    return <Loading />;
+  } else if (errMess) {
+    return <h4>{errMess}</h4>;
+  } else
+    return (
+      <Jumbotron>
+        <h2 className="py-3">{staff.name}</h2>
+        <p>Mã nhân viên: {staff.id}</p>
+        <p>Hệ số lương: {staff.salaryScale}</p>
+        <p>Số giờ làm thêm: {staff.overTime}</p>
+        <Card className="p-1">
+          <CardText>
+            Lương:{" "}
+            {formatDecimal(salary, {
+              decimal: ".",
+              thousands: ",",
+              precision: 0,
+            })}{" "}
+            VND
+          </CardText>
+        </Card>
+      </Jumbotron>
     );
-  }
-  else if (errMess) {
-      return(
-        <h4>{errMess}</h4>
-      );
-  }
-  else 
-  return (
-    <Jumbotron>
-      <h2 className="py-3">{staff.name}</h2>
-      <p>Mã nhân viên: {staff.id}</p>
-      <p>Hệ số lương: {staff.salaryScale}</p>
-      <p>Số giờ làm thêm: {staff.overTime}</p>
-      <Card className="p-1">
-        <CardText>
-          Lương:{" "}
-          {formatDecimal(salary, {
-            decimal: ".",
-            thousands: ",",
-            precision: 0,
-          })}{" "}
-          VND
-        </CardText>
-      </Card>
-    </Jumbotron>
-  );
 };
 
 function SalaryTable(props) {

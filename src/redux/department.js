@@ -14,12 +14,17 @@ export const Department = (
         ...state,
         isLoading: false,
         errMess: null,
-        department: action.payload.department,
+        department: action.payload,
       };
     case ActionTypes.DEPARTMENT_LOADING:
       return { ...state, isLoading: true, errMess: null, department: [] };
     case ActionTypes.DEPARTMENT_FAILED:
-      return { ...state, isLoading: false, errMess: action.payload, department: [] };
+      return {
+        ...state,
+        isLoading: false,
+        errMess: action.payload,
+        department: [],
+      };
     default:
       return state;
   }

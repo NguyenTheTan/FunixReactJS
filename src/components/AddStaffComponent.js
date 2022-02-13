@@ -1,7 +1,5 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from "react";
-// import { connect } from "react-redux";
-// import {withRouter } from 'react-router-dom'
 import {
   Button,
   Modal,
@@ -12,8 +10,6 @@ import {
   Row,
   Col,
 } from "reactstrap";
-// import { addStaff, fetchStaff } from "../redux/ActionCreactors";
-import { DEPARTMENTS } from "../shared/staffs";
 import { LocalForm, Control, Errors } from "react-redux-form";
 
 const required = (val) => val && val.length;
@@ -21,14 +17,6 @@ const maxLength = (len) => (val) => !val || val.length <= len;
 const minLength = (len) => (val) => val && val.length >= len;
 const isNumber = (val) => !Number.isNaN(Number(val));
 const numRange = (val) => val > 0 && val < 4;
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     addStaff: (staff) => dispatch(addStaff(staff)),
-//     fetchStaff: () => {dispatch(fetchStaff())}
-//   }
-  
-// }
 
 class AddStaff extends Component {
   constructor(props) {
@@ -40,49 +28,38 @@ class AddStaff extends Component {
       doB: "",
       salaryScale: "",
       startDate: "",
-      department: "",
+      departmentId: "",
       annualLeave: "",
       overTime: "",
       salary: "",
-      image: "/assets/images/alberto.png",
+      image: "/asset/images/alberto.png",
     };
-    
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
   }
-  
-  // componentDidMount() {
-  //   this.props.fetchStaff()
-  // }
-  
-  
+
   // Hàm tạo đóng mở form thêm nhân viên
   toggleModal() {
     this.setState({
       isModalOpen: !this.state.isModalOpen,
     });
   }
-  
-  
+
   // sự kiện handleSubmit khi người dùng thêm nhân viên
   handleSubmit(value) {
-    const department = DEPARTMENTS.find(
-      (department) => department.id === value.department
-      );
     const newStaff = {
       id: this.props.staffList.length,
       name: value.name,
       doB: value.doB,
-      department: department,
+      departmentId: value.departmentId,
       salaryScale: value.salaryScale,
       startDate: value.startDate,
       annualLeave: value.annualLeave,
       overTime: value.overTime,
-      image: "/assets/images/alberto.png",
+      image: "/asset/images/alberto.png",
     };
-    
-    // this.props.postStaff(newStaff);
-    
+
     // Đièu kiện người dùng nhập đầy đủ các trường
     if (newStaff.name === "") {
       alert("Vui lòng nhập các trường");
@@ -90,7 +67,7 @@ class AddStaff extends Component {
       this.props.postStaff(newStaff);
     }
   }
-  
+
   render() {
     return (
       <>
@@ -186,16 +163,12 @@ class AddStaff extends Component {
               </Row>
 
               <Row className="form-group">
-                <Label htmlFor="department" md={5}>
-                  Phòng ban
-                </Label>
+                <Label md={5}>Phòng ban</Label>
                 <Col md={7}>
                   <Control.select
-                    model=".department"
+                    model=".departmentId"
                     className="form-control"
-                    id="department"
-                    name="department"
-                    defaultValue="Dept00"
+                    name="departmentId"
                   >
                     <option value="Dept00">Chọn Phòng Ban</option>
                     <option value="Dept01">Sale</option>
